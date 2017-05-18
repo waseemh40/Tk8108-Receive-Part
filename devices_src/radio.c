@@ -35,7 +35,7 @@ void radio_init(void){
 	delay_ms(0);
 	radio_write_cmd(MODEM_CONFIG2_W,0x70);
 	delay_ms(0);
-	radio_write_cmd(TEST_W,0x34);
+	radio_write_cmd(SYNCH_WORD_R,0x34);
 	delay_ms(0);
 	radio_write_cmd(OP_MODE_W,0x83);		//finally in TX mode
 	delay_ms(0);
