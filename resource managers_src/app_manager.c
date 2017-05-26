@@ -88,7 +88,7 @@ bool app_manager_init(void){
 	  rgb_on(false,false,true);
 	  	  	  	  //GPS
 	  init_retry=0;
-	  do{
+	  /*do{
 		  temp_init_flag= gps_init();
 			 init_retry++;
 			 if(init_retry>INIT_RETRIES){
@@ -102,11 +102,13 @@ bool app_manager_init(void){
 	sprintf((char *)rs232_tx_buf,"GPS Init. DONE\n");
 	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
 				//LoRA
-	radio_init();
+	*/init_retry=radio_init(radio_sleep_mode);
 	radio_off();
+	sprintf((char *)rs232_tx_buf,"Radio is  init. in %2x mode\n",init_retry);
+	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
 	init_retry=0;
 				//SD card
-	 do{
+	/* do{
 		 temp_init_flag=sd_card_init();
 			 init_retry++;
 			 if(init_retry>INIT_RETRIES){
@@ -141,6 +143,7 @@ bool app_manager_init(void){
 					break;
 			 }
 		 }while(!temp_init_flag);
+	 */
 	 	 	 //Turn off init. LED
 	 rgb_shutdown();
 	 return true;
@@ -152,15 +155,80 @@ void app_manager_tbr_synch_msg(uint8_t  time_manager_cmd, nav_data_t nav_data){
 	int				tbr_msg_count=0;
 	int				tbr_msg_length=0;
 	char			tbr_msg_buf[ARRAY_MESSAGE_SIZE];
-
+	////////////////Radio thing insh-A-ALLAH///////////////
+	uint8_t			radio_buf[32]={1,2,3,4,5,6,7,8,9,10};
+	uint8_t			radio_temp=0;
+	uint8_t			radio_count=0;
+	///////////////////////////////////////////////////////
 	if(time_manager_cmd==0){
-		temp_flag=tbr_cmd_update_rgb_led(cmd_basic_sync,(time_t)nav_data.gps_timestamp);
-		sprintf((char *)rs232_tx_buf,"Basic Sync MSG:Flag=%d\n",temp_flag);
+		//temp_flag=tbr_cmd_update_rgb_led(cmd_basic_sync,(time_t)nav_data.gps_timestamp);
+		temp_flag=1;
+		sprintf((char *)rs232_tx_buf,"Basic Sync MSG:Flag=%d\t\n",temp_flag);
 		rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+		//////////////////////////////////////////////////////////////////
+		radio_temp=radio_init(radio_sleep_mode);
+		RFM_Receive();
+		/*radio_count=RFM_Get_Package(radio_buf);
+		sprintf((char *)rs232_tx_buf,"Package Rxvd length=%d Package=%s\t\n",radio_count,(char *)radio_buf);
+		rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+*/
+		//radio_temp=radio_rx_string();
+		radio_count=0;
+		change_mode(radio_rx_mode);
+		/*do{
+
+			radio_temp=read_cmd(REG_LR_OPMODE);
+			sprintf((char *)rs232_tx_buf,"\tCount =%d Radio Mode=%2x\n",radio_count,radio_temp);
+			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+			radio_temp=read_cmd(REG_LR_RSSIVALUE);
+			sprintf((char *)rs232_tx_buf,"\t\tRSSI=%3d\n",radio_temp);
+			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+			radio_temp=read_cmd(REG_LR_MODEMCONFIG1);
+			sprintf((char *)rs232_tx_buf,"\t\tConfig1=%2x\n",radio_temp);
+			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+			radio_temp=read_cmd(REG_LR_MODEMCONFIG2);
+			sprintf((char *)rs232_tx_buf,"\t\tConfig2=%2x\n",radio_temp);
+			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+			radio_temp=read_cmd(REG_LR_MODEMCONFIG3);
+			sprintf((char *)rs232_tx_buf,"\t\tConfig3=%2x\n",radio_temp);
+			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+			//while(read_cmd(MODEM_STATUS_R) & 0x04){
+			sprintf((char *)rs232_tx_buf,"\t\tStatus=%2x\n",read_cmd(REG_LR_MODEMSTAT));
+			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+			//delay_ms(9);
+			//}
+			//radio_count++;
+			radio_temp=read_cmd(REG_LR_IRQFLAGS);
+			sprintf((char *)rs232_tx_buf,"\t\tIRQ=%2x\n",radio_temp);
+			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+			radio_temp=read_cmd(REG_LR_RXHEADERCNTVALUELSB);
+			sprintf((char *)rs232_tx_buf,"\t\tREG_LR_RXHEADERCNTVALUELSB=%2x\n",radio_temp);
+			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+			delay_ms(10);
+			if((radio_temp & 0x40)){
+				write_cmd(REG_LR_IRQFLAGS,0xFF);
+				sprintf((char *)rs232_tx_buf,"\tBreaking on INT %x\n",radio_temp);
+				rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+				break;
+			}
+			if(radio_count>20){break;}
+		}while(1);*/
+		/*do{
+			radio_transmit_string(radio_buf,10);
+			radio_temp=read_cmd(OP_MODE_R);
+			sprintf((char *)rs232_tx_buf,"Radio Mode=%2x\n",radio_temp);
+			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+			radio_temp=read_cmd(IRQ_FLAGS_R);
+			sprintf((char *)rs232_tx_buf,"IRQ=%2xmode\n",radio_temp);
+			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+			if((radio_temp & 0x08)){write_cmd(IRQ_FLAGS_W,0xFF);break;}
+		}while(1);*/
+		radio_off();
+		/////////////////////////////////////////////////////////////////
 	  }
 	  else if (time_manager_cmd==1 && nav_data.valid==1 ){
 		  temp_flag=tbr_cmd_update_rgb_led(cmd_advance_sync,(time_t)nav_data.gps_timestamp);
-		  sprintf((char *)rs232_tx_buf,"Advance Synch MSG:Flag=%d",temp_flag);
+		  sprintf((char *)rs232_tx_buf,"Advance Synch MSG:Flag=%d\t TimeStamp=%ld\t",temp_flag,(time_t)nav_data.gps_timestamp);
 		  rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
 		  tbr_msg_count=tbr_recv_msg((char *)tbr_msg_buf,&tbr_msg_length);
 		  if(tbr_msg_count>0){

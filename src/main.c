@@ -31,14 +31,15 @@ int main() {
 	}
 	time_manager_init();
   while(1) {
-	  SCB->SCR |= SCB_SCR_SLEEPONEXIT_Msk;
+	  /*SCB->SCR |= SCB_SCR_SLEEPONEXIT_Msk;
 	  EMU_EnterEM1();
 	  time_manager_cmd=time_manager_get_cmd();
 	  if(time_manager_cmd==advance_sync) {
 		  nav_data=app_manager_get_nav_data();
 		  nav_data.gps_timestamp=time_manager_unixTimestamp(nav_data.year,nav_data.month,nav_data.day,
 															nav_data.hour,nav_data.min,nav_data.sec);
-	  }
+	  }*/
+	  delay_ms(10);
 	  app_manager_tbr_synch_msg(time_manager_cmd,nav_data);
    }
 }

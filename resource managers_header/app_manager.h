@@ -17,7 +17,6 @@
 #include "ff.h"
 #include "diskio.h"
 
-
 #define WRITE_SIZE		25
 #define INIT_RETRIES	10
 

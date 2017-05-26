@@ -44,16 +44,17 @@
 									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/CMSIS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/hardware/kit/common/bsp&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/Device/SiliconLabs/EFM32GG/Include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/devices_header}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/devices_src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/drivers_header}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/drivers_src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/fat_filesystem_header}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/fat_filesystem_src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/fifo_buffers_header}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/fifo_buffers_src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/resource managers_header}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/resource managers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/devices_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/devices_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/drivers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/drivers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fat_filesystem_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fat_filesystem_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fifo_buffers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fifo_buffers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource managers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource managers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/rfm95_library}&quot;"/>
 								</option>
 								<inputType id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.input.1967143892" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -64,20 +65,20 @@
 							</tool>
 							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.base.1537989852" name="GNU ARM Assembler" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.base">
 								<option id="gnu.both.asm.option.include.paths.483648270" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/hardware/kit/common/drivers&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/CMSIS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/hardware/kit/common/bsp&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/Device/SiliconLabs/EFM32GG/Include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/devices_header}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/devices_src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/drivers_header}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/drivers_src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/fat_filesystem_header}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/fat_filesystem_src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/fifo_buffers_header}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/fifo_buffers_src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/resource managers_header}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/resource managers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/devices_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/devices_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/drivers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/drivers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fat_filesystem_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fat_filesystem_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fifo_buffers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fifo_buffers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource managers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource managers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/rfm95_library}&quot;"/>
 								</option>
 								<option id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.as.def.symbols.458364329" name="Defined symbols (-D)" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.as.def.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="EFM32GG842F1024=1"/>
@@ -93,6 +94,73 @@
 							</tool>
 							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.base.862386740" name="GNU ARM C++ Linker" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.base"/>
 							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.archiver.base.441592096" name="GNU ARM Archiver" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.archiver.base"/>
+						</toolChain>
+					</folderInfo>
+					<folderInfo id="com.silabs.ss.tool.ide.arm.toolchain.gnu.cdt.debug#com.silabs.ss.tool.ide.arm.toolchain.gnu.cdt:4.9.3.20150529.1972776611" name="/" resourcePath="src">
+						<toolChain id="com.silabs.ide.si32.gcc.cdt.managedbuild.toolchain.exe.1002543799" name="Si32 GNU ARM" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.toolchain.exe" unusedChildren="">
+							<option id="com.silabs.ide.si32.gcc.cdt.managedbuild.toolchain.debug.level.971880729.778280863" name="Debug Level" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.toolchain.debug.level.971880729"/>
+							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.silabs.ide.si32.gcc.cdt.managedbuild.target.gnu.platform.base" isAbstract="false" name="Debug Platform" osList="win32,linux,macosx" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.target.gnu.platform.base"/>
+							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base.1599593739" name="GNU ARM C Compiler" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base.920331029">
+								<option id="gnu.c.compiler.option.include.paths.781479463" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/emlib/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/hardware/kit/common/drivers&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/CMSIS/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/hardware/kit/common/bsp&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/Device/SiliconLabs/EFM32GG/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/devices_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/devices_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/drivers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/drivers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fat_filesystem_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fat_filesystem_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fifo_buffers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fifo_buffers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource managers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource managers_header}&quot;"/>
+								</option>
+								<inputType id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.input.1750992619" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base.220677859" name="GNU ARM C++ Compiler" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base.1781798917"/>
+							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.base.1628878398" name="GNU ARM Assembler" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.base.1537989852">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.192051738" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.base.340697642" name="GNU ARM C Linker" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.base.1186950266"/>
+							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.base.2060310298" name="GNU ARM C++ Linker" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.base.862386740"/>
+							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.archiver.base.1362620813" name="GNU ARM Archiver" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.archiver.base.441592096"/>
+						</toolChain>
+					</folderInfo>
+					<folderInfo id="com.silabs.ss.tool.ide.arm.toolchain.gnu.cdt.debug#com.silabs.ss.tool.ide.arm.toolchain.gnu.cdt:4.9.3.20150529.1656032901" name="/" resourcePath="resource managers_src">
+						<toolChain id="com.silabs.ide.si32.gcc.cdt.managedbuild.toolchain.exe.1827990604" name="Si32 GNU ARM" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.toolchain.exe" unusedChildren="">
+							<option id="com.silabs.ide.si32.gcc.cdt.managedbuild.toolchain.debug.level.971880729.290552355" name="Debug Level" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.toolchain.debug.level.971880729"/>
+							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.silabs.ide.si32.gcc.cdt.managedbuild.target.gnu.platform.base" isAbstract="false" name="Debug Platform" osList="win32,linux,macosx" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.target.gnu.platform.base"/>
+							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base.74409146" name="GNU ARM C Compiler" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base.920331029">
+								<option id="gnu.c.compiler.option.include.paths.670528830" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/emlib/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/hardware/kit/common/drivers&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/CMSIS/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/hardware/kit/common/bsp&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/Device/SiliconLabs/EFM32GG/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/devices_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/devices_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/drivers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/drivers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fat_filesystem_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fat_filesystem_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fifo_buffers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fifo_buffers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource managers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource managers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/rfm95_library}&quot;"/>
+								</option>
+								<inputType id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.input.486989299" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base.328999577" name="GNU ARM C++ Compiler" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base.1781798917"/>
+							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.base.1548495383" name="GNU ARM Assembler" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.base.1537989852">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1578690758" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.base.1990643870" name="GNU ARM C Linker" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.base.1186950266"/>
+							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.base.91811761" name="GNU ARM C++ Linker" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.base.862386740"/>
+							<tool id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.archiver.base.370174388" name="GNU ARM Archiver" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.archiver.base.441592096"/>
 						</toolChain>
 					</folderInfo>
 				</configuration>
@@ -162,6 +230,19 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/fifo_buffers_src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/resource managers_header}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/resource managers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/devices_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/devices_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/drivers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/drivers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fat_filesystem_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fat_filesystem_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fifo_buffers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fifo_buffers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource_managers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource_managers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource managers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource managers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/rfm95_library}&quot;"/>
 								</option>
 								<inputType id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.input.1041959768" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -196,6 +277,19 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/fifo_buffers_src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/resource managers_header}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/testProject/resource managers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/devices_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/devices_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/drivers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/drivers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fat_filesystem_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fat_filesystem_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fifo_buffers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/fifo_buffers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource_managers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource_managers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource managers_header}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/resource managers_src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Receiver Part/rfm95_library}&quot;"/>
 								</option>
 								<option id="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.as.def.symbols.1657084168" name="Defined symbols (-D)" superClass="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.as.def.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="EFM32GG842F1024=1"/>
