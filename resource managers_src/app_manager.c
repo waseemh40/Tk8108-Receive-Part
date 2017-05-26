@@ -171,77 +171,8 @@ void app_manager_tbr_synch_msg(uint8_t  time_manager_cmd, nav_data_t nav_data){
 		//////////////////////////////////////////////////////////////////
 		radio_temp=radio_init(0);
 		RFM_Receive();
-		/*radio_count=RFM_Get_Package(radio_buf);
-		sprintf((char *)rs232_tx_buf,"Package Rxvd length=%d Package=%s\t\n",radio_count,(char *)radio_buf);
-		rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-*/
-		//radio_temp=radio_rx_string();
 		radio_count=0;
-		//change_mode(0);
-		/*do{
-
-			radio_temp=read_cmd(REG_LR_OPMODE);
-			sprintf((char *)rs232_tx_buf,"\tCount =%d Radio Mode=%2x\n",radio_count,radio_temp);
-			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-			radio_temp=read_cmd(REG_LR_RSSIVALUE);
-			sprintf((char *)rs232_tx_buf,"\t\tRSSI=%3d\n",radio_temp);
-			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-			radio_temp=read_cmd(REG_LR_MODEMCONFIG1);
-			sprintf((char *)rs232_tx_buf,"\t\tConfig1=%2x\n",radio_temp);
-			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-			radio_temp=read_cmd(REG_LR_MODEMCONFIG2);
-			sprintf((char *)rs232_tx_buf,"\t\tConfig2=%2x\n",radio_temp);
-			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-			radio_temp=read_cmd(REG_LR_MODEMCONFIG3);
-			sprintf((char *)rs232_tx_buf,"\t\tConfig3=%2x\n",radio_temp);
-			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-			//while(read_cmd(MODEM_STATUS_R) & 0x04){
-			sprintf((char *)rs232_tx_buf,"\t\tStatus=%2x\n",read_cmd(REG_LR_MODEMSTAT));
-			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-			//delay_ms(9);
-			//}
-			//radio_count++;
-			radio_temp=read_cmd(REG_LR_IRQFLAGS);
-			sprintf((char *)rs232_tx_buf,"\t\tIRQ=%2x\n",radio_temp);
-			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-			radio_temp=read_cmd(REG_LR_RXHEADERCNTVALUELSB);
-			sprintf((char *)rs232_tx_buf,"\t\tREG_LR_RXHEADERCNTVALUELSB=%2x\n",radio_temp);
-			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-			delay_ms(10);
-			if((radio_temp & 0x40)){
-				write_cmd(REG_LR_IRQFLAGS,0xFF);
-				sprintf((char *)rs232_tx_buf,"\tBreaking on INT %x\n",radio_temp);
-				rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-				break;
-			}
-			if(radio_count>20){break;}
-		}while(1);*/
-		/*do{
-			radio_transmit_string(radio_buf,10);
-			radio_temp=read_cmd(OP_MODE_R);
-			sprintf((char *)rs232_tx_buf,"Radio Mode=%2x\n",radio_temp);
-			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-			radio_temp=read_cmd(IRQ_FLAGS_R);
-			sprintf((char *)rs232_tx_buf,"IRQ=%2xmode\n",radio_temp);
-			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-			if((radio_temp & 0x08)){write_cmd(IRQ_FLAGS_W,0xFF);break;}
-		}while(1);*/
 		radio_off();
-
-		/*radio_temp=radio_init(radio_sleep_mode);
-		do{
-			//radio_temp=radio_init(radio_standby_mode);
-			radio_transmit_string(radio_buf,10);
-			radio_temp=read_cmd(OP_MODE_R);
-			sprintf((char *)rs232_tx_buf,"Radio Mode=%2x\n",radio_temp);
-			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-			radio_temp=read_cmd(IRQ_FLAGS_R);
-			sprintf((char *)rs232_tx_buf,"IRQ=%2xmode\n",radio_temp);
-			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-			if((radio_temp & 0x08)){write_cmd(IRQ_FLAGS_W,0xFF);break;}
-		}while(1);*/
-		//radio_off();
-		/////////////////////////////////////////////////////////////////
 	  }
 	  else if (time_manager_cmd==1 && nav_data.valid==1 ){
 		  temp_flag=tbr_cmd_update_rgb_led(cmd_advance_sync,(time_t)nav_data.gps_timestamp);

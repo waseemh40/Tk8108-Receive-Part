@@ -64,7 +64,7 @@ const 			unsigned char  		rs232_tx_buf[128];
 	 delay_ms(1);
 	 return rx_data;
  }
-/* void change_mode(radio_mode_t radio_mode){
+ void change_mode(radio_mode_t radio_mode){
  	if(radio_mode==radio_tx_mode){
  		write_cmd(REG_LR_FIFOTXBASEADDR,TX_BASE_ADDRESS);
  		write_cmd(REG_LR_DIOMAPPING1,DIO_TX_MAPPING);
@@ -82,7 +82,7 @@ const 			unsigned char  		rs232_tx_buf[128];
  		write_cmd(REG_LR_OPMODE,SLEEP_MODE);
  	}
  	return;
- }*/
+ }
 /*
  * public functions
  */
@@ -161,20 +161,6 @@ uint8_t radio_init(radio_mode_t radio_mode)
    //Switch DIO0 to TxDone
    RFM_Write(REG_LR_DIOMAPPING1,DIO_TX_MAPPING);
 
-  /*!
-   *  //Set carrier frequency
-   // 868.100 MHz / 61.035 Hz = 14222987 = 0xD9068B
-   RFM_Write(0x06,0xD9);
-   RFM_Write(0x07,0x06);
-   RFM_Write(0x08,0x8B);
-
-   //Switch to SF7 CRC on payload on
-   RFM_Write(0x1E,0xB4);
-
-   //Set IQ to normal values
-   RFM_Write(0x33,0x27);
-   RFM_Write(0x3B,0x1D);
-   */
    //Set payload length to the right length
    RFM_Write(REG_LR_PAYLOADLENGTH,Package_Length);
 
@@ -210,25 +196,12 @@ uint8_t* RFM_Receive(void)
    unsigned char RFM_Interrupt;
    unsigned char	msg[20];
 
-   /*//Set carrier freqeuncy
-   // 868.100 MHz / 61.035 Hz = 14222987 = 0xD9068B
-   RFM_Write(0x06,0xD9);
-   RFM_Write(0x07,0x06);
-   RFM_Write(0x08,0x8B);
-    */
    //Set RFM in Standby mode wait on mode ready
    RFM_Write(REG_LR_OPMODE,STDBY_MODE);
 
    //Switch DIO0 to TxDone
    RFM_Write(REG_LR_DIOMAPPING1,DIO_RX_MAPPING);
-/*
-   //Switch to SF 9 payload on CRC on
-   RFM_Write(0x1E,0xb4);
 
-   //Invert IQ
-   RFM_Write(0x33,0x67);
-   RFM_Write(0x3B,0x19);
-*/
    //Switch RFM to Single reception
    RFM_Write(REG_LR_OPMODE,RX_MODE);
 
@@ -311,156 +284,6 @@ uint8_t RFM_Get_Package(unsigned char *RFM_Rx_Package)
 
   return RFM_Package_Length;
 }
-/*uint8_t radio_init(radio_mode_t radio_mode){
-	uint8_t		ret_val=0;
-	uint64_t	F_rf=0;
-	////////////////////////////////////////////////////
-	spi_init();
-	///////////////////////////////////////////////////
-	GPIO_PinModeSet(PWR_EN_PORT,RADIO_PWR_EN,gpioModePushPull,0);
-	GPIO_PinModeSet(RADIO_IO_0345_PORT,RADIO_IO_0,gpioModeInput,0);
-	GPIO_PinModeSet(RADIO_IO_12_PORT,RADIO_IO_1,gpioModeInput,0);
-	radio_on();
-	spi_cs_set(radio);
-	delay_ms(7);
-		//Put in Sleep mode
-	write_cmd(REG_LR_OPMODE,
-			(read_cmd( REG_LR_OPMODE ) &
-					RFLR_OPMODE_LONGRANGEMODE_MASK & RFLR_OPMODE_MASK) |
-					(RFLR_OPMODE_LONGRANGEMODE_ON ) | ( RFLR_OPMODE_SLEEP ) );
-
-		//Set center frequency
-	F_rf = 0xD90667;//((uint64_t)Fc << 14);
-	write_cmd(REG_LR_FRFMSB,RFLR_FRFMSB_868_1_MHZ);
-	write_cmd(REG_LR_FRFMID,RFLR_FRFMID_868_1_MHZ);
-	write_cmd(REG_LR_FRFLSB,0x8B);
-		//LNA config.
-	write_cmd(REG_LR_LNA,
-			(read_cmd( REG_LR_LNA ) &
-					RFLR_LNA_GAIN_MASK & RFLR_LNA_BOOST_HF_MASK) |
-					(RFLR_LNA_GAIN_G1) | (RFLR_LNA_BOOST_HF_ON));
-		//Configure Modem i.e. SF, BW & Rx timeout
-	write_cmd( REG_LR_MODEMCONFIG1,
-                 ( read_cmd( REG_LR_MODEMCONFIG1 ) &
-                		 RFLR_MODEMCONFIG1_BW_MASK & RFLR_MODEMCONFIG1_CODINGRATE_MASK & RFLR_MODEMCONFIG1_IMPLICITHEADER_MASK ) |
-						 ( RFLR_MODEMCONFIG1_BW_125_KHZ ) | ( RFLR_MODEMCONFIG1_CODINGRATE_4_5 ) | (RFLR_MODEMCONFIG1_IMPLICITHEADER_OFF) );
-	write_cmd( REG_LR_MODEMCONFIG2,
-                 ( read_cmd( REG_LR_MODEMCONFIG2 ) &
-                		 RFLR_MODEMCONFIG2_SF_MASK & RFLR_MODEMCONFIG2_RXPAYLOADCRC_MASK & RFLR_MODEMCONFIG2_SYMBTIMEOUTMSB_MASK ) |
-						 ( RFLR_MODEMCONFIG2_SF_7 ) | ( RFLR_MODEMCONFIG2_RXPAYLOADCRC_ON ) | (RFLR_MODEMCONFIG2_SYMBTIMEOUTMSB) );
-	write_cmd( REG_LR_SYMBTIMEOUTLSB, 0x25);//RFLR_SYMBTIMEOUTLSB_SYMBTIMEOUT);
-	write_cmd( REG_LR_MODEMCONFIG3,
-                 ( read_cmd( REG_LR_MODEMCONFIG3 ) &
-                		  RFLR_MODEMCONFIG3_AGCAUTO_MASK ) |
-						 ( RFLR_MODEMCONFIG3_AGCAUTO_ON ) );
-
-		//packet structure
-	//write_cmd(REG_LR_PAYLOADMAXLENGTH, RFLR_PAYLOADMAXLENGTH);
-	write_cmd(REG_LR_PREAMBLEMSB,RFLR_PREAMBLELENGTHMSB);
-	write_cmd(REG_LR_PREAMBLELSB,RFLR_PREAMBLELENGTHLSB);
-	//write_cmd(REG_LR_PAYLOADLENGTH,RFLR_PAYLOADLENGTH);
-		//Synch word
-	//write_cmd(REG_LR_SYNCWORD, 0x34);
-		//Inversion of IQ
-	//write_cmd(REG_LR_INVERTIQ,0x67);
-	//write_cmd(REG_LR_INVERTIQ2,0x19);
-		//Test Regs
-	//write_cmd(REG_LR_TEST36,0x02);
-	//write_cmd(REG_LR_TEST3A,0x64);
-		//Enable IRQs
-	write_cmd( REG_LR_IRQFLAGSMASK,//0x00);
-    ( read_cmd( REG_LR_IRQFLAGSMASK ) &
-   		 RFLR_IRQFLAGS_RXTIMEOUT_MASK & RFLR_IRQFLAGS_RXDONE_MASK & RFLR_IRQFLAGS_VALIDHEADER_MASK & RFLR_IRQFLAGS_CADDETECTED_MASK & RFLR_IRQFLAGS_CADDONE_MASK ) |
-			 ( RFLR_IRQFLAGS_RXTIMEOUT ) | ( RFLR_IRQFLAGS_RXDONE ) | (RFLR_IRQFLAGS_VALIDHEADER) | (RFLR_IRQFLAGS_CADDETECTED) | (RFLR_IRQFLAGS_CADDONE) );
-	////////////////////////////////////////
-	//write_cmd( REG_LR_HOPPERIOD, 0xFF);
-	////////////////////////////////////////
-		//Set packet structure
-//	write_cmd(PREAMBLE_MSB_W,(uint8_t)(PREAMBLE_LENGTH>>8));
-//	write_cmd(PREAMBLE_LSB_W,PREAMBLE_LENGTH);
-//	write_cmd(PAYLOAD_LENGTH_W,PAYLOAD_LENGTH);
-//	write_cmd(MAX_PAYLOAD_LEN_W,MAX_PAYLOAD_LENGTH);
-	//////////////////////////////////////////////
-	ret_val=read_cmd(REG_LR_FRFMSB);
-	sprintf((char *)rs232_tx_buf,"\tFrf_MSB=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_FRFMID);
-	sprintf((char *)rs232_tx_buf,"\tFrf_MIB=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_FRFLSB);
-	sprintf((char *)rs232_tx_buf,"\tFrf_LSB=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_SYNCWORD);
-	sprintf((char *)rs232_tx_buf,"\tSynch Word=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_MODEMCONFIG1);
-	sprintf((char *)rs232_tx_buf,"\tConfig_1=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_MODEMCONFIG2);
-	sprintf((char *)rs232_tx_buf,"\tConfig_2=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_SYMBTIMEOUTLSB);
-	sprintf((char *)rs232_tx_buf,"\tTimeOut=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_MODEMCONFIG3);
-	sprintf((char *)rs232_tx_buf,"\tConfig_3=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_LNA);
-	sprintf((char *)rs232_tx_buf,"\tLNA=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_IRQFLAGSMASK);
-	sprintf((char *)rs232_tx_buf,"\tIRQ Mask=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_PREAMBLEMSB);
-	sprintf((char *)rs232_tx_buf,"\tPreamble MSB=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_PREAMBLELSB);
-	sprintf((char *)rs232_tx_buf,"\tPreamble LSB=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_PAYLOADLENGTH);
-	sprintf((char *)rs232_tx_buf,"\tPayload=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_PAYLOADMAXLENGTH);
-	sprintf((char *)rs232_tx_buf,"\tMax Payload=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_INVERTIQ);
-	sprintf((char *)rs232_tx_buf,"\tIQ=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_INVERTIQ2);
-	sprintf((char *)rs232_tx_buf,"\tIQ2=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_TEST36);
-	sprintf((char *)rs232_tx_buf,"\ttest36=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	ret_val=read_cmd(REG_LR_TEST3A);
-	sprintf((char *)rs232_tx_buf,"\tTEST3A=%2x\n",ret_val);
-	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-	delay_ms(7);
-	///////////////////////////////////////////////
-		//Finally put in desired mode
-	change_mode(radio_mode);
-	ret_val=read_cmd(REG_LR_OPMODE);
-
-	return ret_val;
-}
-*/
 void radio_on(void){
 	GPIO_PinOutSet(PWR_EN_PORT,RADIO_PWR_EN);
 	spi_cs_set(radio);
@@ -470,37 +293,4 @@ void radio_on(void){
 void radio_off(void){
 	GPIO_PinOutClear(PWR_EN_PORT,RADIO_PWR_EN);
 	return;
-}/*
-void radio_transmit_string(uint8_t *tx_buf, uint8_t size){
-	change_mode(radio_standby_mode);
-	write_fifo(tx_buf,size);
-	change_mode(radio_tx_mode);
-	delay_ms(1);
-	return;
 }
-
-uint8_t radio_rx_string(void){
-	uint8_t			radio_temp=0;
-	uint8_t			radio_count=0;
-	change_mode(radio_rx_mode);
-	do{
-		radio_temp=read_cmd(REG_LR_OPMODE);
-		sprintf((char *)rs232_tx_buf,"\tCount =%d Radio Mode=%2x\n",radio_count,radio_temp);
-		rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-		delay_ms(7);
-		radio_temp=read_cmd(REG_LR_IRQFLAGS);
-		sprintf((char *)rs232_tx_buf,"\tIRQ Flags=%2x\n",radio_temp);
-		rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-		radio_count++;
-		if((radio_temp & 0x02)){
-			write_cmd(REG_LR_IRQFLAGS,0xFF);
-			sprintf((char *)rs232_tx_buf,"\tBreaking on INT\n");
-			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-			break;
-		}
-		if(radio_count>100){break;}
-	}while(1);
-	change_mode(radio_sleep_mode);
-	return radio_temp;
-}
-*/
