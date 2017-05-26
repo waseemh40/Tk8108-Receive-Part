@@ -9,11 +9,11 @@
 #define SRC_RADIO_REG_MAP_H_
 
 #define WNR											1<<7
-/*!
- * ============================================================================
- * SX1276 Internal registers Address
- * ============================================================================
- */
+
+
+/*
+ * read mode addresses
+*/
 #define REG_LR_FIFO                                 0x00
 // Common settings
 #define REG_LR_OPMODE                               0x01
@@ -83,7 +83,5 @@
 #define REG_LR_AGCTHRESH2                           0x63
 #define REG_LR_AGCTHRESH3                           0x64
 #define REG_LR_PLL                                  0x70
-
-
 
 #endif /* SRC_RADIO_REG_MAP_H_ */

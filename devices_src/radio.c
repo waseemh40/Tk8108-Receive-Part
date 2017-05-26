@@ -64,7 +64,7 @@ const 			unsigned char  		rs232_tx_buf[128];
 	 delay_ms(1);
 	 return rx_data;
  }
- void change_mode(radio_mode_t radio_mode){
+/* void change_mode(radio_mode_t radio_mode){
  	if(radio_mode==radio_tx_mode){
  		write_cmd(REG_LR_FIFOTXBASEADDR,TX_BASE_ADDRESS);
  		write_cmd(REG_LR_DIOMAPPING1,DIO_TX_MAPPING);
@@ -82,7 +82,7 @@ const 			unsigned char  		rs232_tx_buf[128];
  		write_cmd(REG_LR_OPMODE,SLEEP_MODE);
  	}
  	return;
- }
+ }*/
 /*
  * public functions
  */

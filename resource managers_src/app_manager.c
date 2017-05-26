@@ -102,7 +102,7 @@ bool app_manager_init(void){
 	sprintf((char *)rs232_tx_buf,"GPS Init. DONE\n");
 	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
 				//LoRA
-	*/init_retry=radio_init(radio_sleep_mode);
+	*/init_retry=radio_init(0);
 	radio_off();
 	sprintf((char *)rs232_tx_buf,"Radio is  init. in %2x mode\n",init_retry);
 	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
@@ -159,14 +159,17 @@ void app_manager_tbr_synch_msg(uint8_t  time_manager_cmd, nav_data_t nav_data){
 	uint8_t			radio_buf[32]={1,2,3,4,5,6,7,8,9,10};
 	uint8_t			radio_temp=0;
 	uint8_t			radio_count=0;
+
 	///////////////////////////////////////////////////////
 	if(time_manager_cmd==0){
 		//temp_flag=tbr_cmd_update_rgb_led(cmd_basic_sync,(time_t)nav_data.gps_timestamp);
 		temp_flag=1;
+		temp_flag=tbr_cmd_update_rgb_led(cmd_basic_sync,(time_t)nav_data.gps_timestamp);
+
 		sprintf((char *)rs232_tx_buf,"Basic Sync MSG:Flag=%d\t\n",temp_flag);
 		rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
 		//////////////////////////////////////////////////////////////////
-		radio_temp=radio_init(radio_sleep_mode);
+		radio_temp=radio_init(0);
 		RFM_Receive();
 		/*radio_count=RFM_Get_Package(radio_buf);
 		sprintf((char *)rs232_tx_buf,"Package Rxvd length=%d Package=%s\t\n",radio_count,(char *)radio_buf);
@@ -174,7 +177,7 @@ void app_manager_tbr_synch_msg(uint8_t  time_manager_cmd, nav_data_t nav_data){
 */
 		//radio_temp=radio_rx_string();
 		radio_count=0;
-		change_mode(radio_rx_mode);
+		//change_mode(0);
 		/*do{
 
 			radio_temp=read_cmd(REG_LR_OPMODE);
@@ -224,6 +227,20 @@ void app_manager_tbr_synch_msg(uint8_t  time_manager_cmd, nav_data_t nav_data){
 			if((radio_temp & 0x08)){write_cmd(IRQ_FLAGS_W,0xFF);break;}
 		}while(1);*/
 		radio_off();
+
+		/*radio_temp=radio_init(radio_sleep_mode);
+		do{
+			//radio_temp=radio_init(radio_standby_mode);
+			radio_transmit_string(radio_buf,10);
+			radio_temp=read_cmd(OP_MODE_R);
+			sprintf((char *)rs232_tx_buf,"Radio Mode=%2x\n",radio_temp);
+			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+			radio_temp=read_cmd(IRQ_FLAGS_R);
+			sprintf((char *)rs232_tx_buf,"IRQ=%2xmode\n",radio_temp);
+			rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
+			if((radio_temp & 0x08)){write_cmd(IRQ_FLAGS_W,0xFF);break;}
+		}while(1);*/
+		//radio_off();
 		/////////////////////////////////////////////////////////////////
 	  }
 	  else if (time_manager_cmd==1 && nav_data.valid==1 ){
