@@ -77,7 +77,6 @@ bool tbr_cmd_update_rgb_led(tbr_cmd_t tbr_cmd, time_t timestamp){
 bool app_manager_init(void){
 	  const unsigned char  		rs232_tx_buf[64];
 	  uint8_t					init_retry=0;
-	  bool						temp_init_flag=false;
 
 	  	  	  	  //basic initializations
 	  rgb_init();
@@ -156,9 +155,8 @@ void app_manager_tbr_synch_msg(uint8_t  time_manager_cmd, nav_data_t nav_data){
 	int				tbr_msg_length=0;
 	char			tbr_msg_buf[ARRAY_MESSAGE_SIZE];
 	////////////////Radio thing insh-A-ALLAH///////////////
-	uint8_t			radio_buf[32]={1,2,3,4,5,6,7,8,9,10};
+	unsigned char	radio_buf[256];
 	uint8_t			radio_temp=0;
-	uint8_t			radio_count=0;
 
 	///////////////////////////////////////////////////////
 	if(time_manager_cmd==0){
@@ -173,7 +171,6 @@ void app_manager_tbr_synch_msg(uint8_t  time_manager_cmd, nav_data_t nav_data){
 		radio_temp=RFM_Receive(radio_buf);
 		sprintf((char *)rs232_tx_buf,"Basic Sync MSG:Radio=%s Length=%d\n",radio_buf,radio_temp);
 		rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
-		radio_count=0;
 		RFM_off();
 	  }
 	  else if (time_manager_cmd==1 && nav_data.valid==1 ){

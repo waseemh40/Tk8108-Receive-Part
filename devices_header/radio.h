@@ -19,13 +19,13 @@
 #define RX_SINGLE_MODE			0x86
 		//RF Frequency (869.85 MHz)
 #define FC_MSB					0xD9
-#define FC_MIB					0x76
+#define FC_MID					0x76
 #define FC_LSB					0x67
 #define Fc						868.3 	//(in MHz)
 		//RF output power
-#define	PA_7dBm					0x08
-#define	PA_13dBm				0x0E
-#define	PA_20dBm				0x8F	//18dBm or max...
+#define	PA_7dBm					0x77
+#define	PA_13dBm				0x0E	//invalid
+#define	PA_20dBm				0xFF
 		//PA Ramp time
 #define	PA_RAMP_TIME			0x08	//50usec
 		//LNA settings
