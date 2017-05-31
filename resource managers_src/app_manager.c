@@ -102,8 +102,8 @@ bool app_manager_init(void){
 	sprintf((char *)rs232_tx_buf,"GPS Init. DONE\n");
 	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
 				//LoRA
-	*/init_retry=radio_init(0);
-	radio_off();
+	*/init_retry=RFM_Init();
+	RFM_off();
 	sprintf((char *)rs232_tx_buf,"Radio is  init. in %2x mode\n",init_retry);
 	rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
 	init_retry=0;
@@ -166,13 +166,15 @@ void app_manager_tbr_synch_msg(uint8_t  time_manager_cmd, nav_data_t nav_data){
 		temp_flag=1;
 		temp_flag=tbr_cmd_update_rgb_led(cmd_basic_sync,(time_t)nav_data.gps_timestamp);
 
-		sprintf((char *)rs232_tx_buf,"Basic Sync MSG:Flag=%d\t\n",temp_flag);
+		sprintf((char *)rs232_tx_buf,"Basic Sync MSG:Flag=%d\n",temp_flag);
 		rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
 		//////////////////////////////////////////////////////////////////
-		radio_temp=radio_init(0);
-		RFM_Receive();
+		radio_temp=RFM_Init();
+		radio_temp=RFM_Receive(radio_buf);
+		sprintf((char *)rs232_tx_buf,"Basic Sync MSG:Radio=%s Length=%d\n",radio_buf,radio_temp);
+		rs232_transmit_string(rs232_tx_buf,strlen((const char *)rs232_tx_buf));
 		radio_count=0;
-		radio_off();
+		RFM_off();
 	  }
 	  else if (time_manager_cmd==1 && nav_data.valid==1 ){
 		  temp_flag=tbr_cmd_update_rgb_led(cmd_advance_sync,(time_t)nav_data.gps_timestamp);
