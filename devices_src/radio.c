@@ -162,6 +162,12 @@ void RFM_Send_Package(uint8_t *RFM_Tx_Package, uint8_t Package_Length)
 	   {
 			delay_ms(7);
 	   }
+
+	   //Clear interrupt register
+	   write_reg(REG_LR_IRQFLAGS,0x01);
+
+	   //Switch rfm to standby
+	   write_reg(REG_LR_OPMODE,SLEEP_MODE);
 	   return;
 }
 uint8_t RFM_Receive(unsigned char  *msg)
